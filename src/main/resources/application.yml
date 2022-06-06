@@ -7,7 +7,7 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://10.169.183.30:3306/c2csystem?serverTimezone=UTC #数据库端口号/数据库名
+      url: jdbc:mysql://10.169.145.136:3306/c2csystem?serverTimezone=UTC #数据库端口号/数据库名
       username: root
       password: 1234
 
