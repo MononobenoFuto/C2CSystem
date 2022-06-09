@@ -18,12 +18,18 @@ public class UserServiceTest {
     @Test
     void testInsert() {
         User user = new User();
+        user.setSid("2019112222");
         user.setNickname("testnick");
         user.setIssuper(0);
         user.setPassword("testpwd");
         user.setPhone("13777777777");
-        user.setSex("m");
-        user.setId(2019112222);
         userService.save(user);
     }
+
+    @Test
+    void testLogin() {
+        Integer uid = userService.login("13776807197", "1234");
+        System.out.println(uid);
+    }
+
 }

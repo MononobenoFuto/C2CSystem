@@ -19,7 +19,8 @@ public class UserMapperTest {
     @Test
     void testInsert() {
         User user = new User();
-        user.setId(2019112299);
+        user.setSid("2011111111");
+        user.setPhone("13776888551");
         user.setIssuper(0);
         user.setNickname("hello");
         userMapper.insert(user);
@@ -40,5 +41,11 @@ public class UserMapperTest {
         IPage<User> page = new Page<User>(1, 5);
         userMapper.selectPage(page, null);
         System.out.println(page.getRecords());
+    }
+
+    @Test
+    void testSelect() {
+        User user = userMapper.getByPhoneAndPassword("13776807197", "1234");
+        System.out.println(user.getId());
     }
 }
