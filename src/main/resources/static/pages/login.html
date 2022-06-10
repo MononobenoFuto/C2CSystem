@@ -23,28 +23,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- css files -->
 <link rel="stylesheet" href="../css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
 
+<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <!-- Online-fonts -->
 <!--<link href="//fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew,latin-ext,vietnamese" rel="stylesheet">-->
 <!-- //Online-fonts -->
 
 <script>
 	$(document).ready(function (){
-		$("button").click(function () {
+		$("#submit").click(function () {
 			var user = {
-				//"sid": $("#uid").val(),
 				"password": $("#upwd").val(),
-				//"nickname": $("#unick").val(),
-				"phone": $("#uphone").val(),
-				//"password": $("#upwd").val(),
-				//"issuper": 0
+				"phone": $("#uphone").val()
 			}
-			// var user = {
-			// 	"sid": "2019112222",
-			// 	"password": "aaa",
-			// 	"nickname": "bbb",
-			// 	"phone": "ccc",
-			// 	"issuper": 0
-			// }
 			$.ajax({
 				type: "POST",
 				url: "/users/login",
@@ -61,12 +51,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						alert("登录成功！欢迎！");
 						window.location.href = "index.html";
 					}
-
+					//alert("登录成功！欢迎！");
+					//window.location.href = "index.html";
 				}
-				//error:function (data){
-				//	alert("登录失败！请重试！");
-					//document.getElementById("demo").innerHTML="手机号或密码错误。";
-				//}
 			})
 		})
 	});
@@ -78,7 +65,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="main">
 		<div class="main-w3l">
 			<h1 class="logo-w3">校园闲置物品交易系统</h1>
-			<!--<p id="demo"></p>-->
+
 <!--			<div class="w3layouts-left">-->
 <!--				<h3>Connect With Your Social Account</h3>-->
 <!--				<p>Enter into your website to shop more with best offers upto 50% off this week</p>-->
@@ -95,7 +82,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<h2><span>登录</span></h2>
 					<div>
 						<!--<input placeholder="SmartPhone" name="SmartPhone" type="tel" required="">-->
-						<input d="uphone" placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
+						<input id="uphone" placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
 						<!--<input placeholder="Full Name" name="Name" type="email" required="">-->
 						<!--<input placeholder="Password" name="Password" type="password" required="">-->
 						<input id="upwd" placeholder="Password" name="Password" type="password" required="">
