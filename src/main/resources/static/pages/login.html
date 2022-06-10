@@ -52,9 +52,21 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				dataType: "json",
 				data: JSON.stringify(user),
 				success:function (data) {
-					alert("登录成功！欢迎！");
-					window.location.href = "index.html";
+					if(data == 0){
+						//alert("手机号或密码错误！请重试！");
+						confirm("手机号或密码错误！请重试！");
+						window.location.href = "login.html";
+					}
+					else{
+						alert("登录成功！欢迎！");
+						window.location.href = "index.html";
+					}
+
 				}
+				//error:function (data){
+				//	alert("登录失败！请重试！");
+					//document.getElementById("demo").innerHTML="手机号或密码错误。";
+				//}
 			})
 		})
 	});
@@ -66,7 +78,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="main">
 		<div class="main-w3l">
 			<h1 class="logo-w3">校园闲置物品交易系统</h1>
-
+			<!--<p id="demo"></p>-->
 <!--			<div class="w3layouts-left">-->
 <!--				<h3>Connect With Your Social Account</h3>-->
 <!--				<p>Enter into your website to shop more with best offers upto 50% off this week</p>-->
