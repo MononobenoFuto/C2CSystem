@@ -21,39 +21,73 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- js -->
 <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <!-- //js -->
+<!--our dynamic	-->
+<script>
+	$(document).ready(function (){
+		$("button").click(function () {
+
+			var user = {
+				"sid": $("#uid").val(),
+				"password": $("#upwd").val(),
+				"nickname": $("#unick").val(),
+				"phone": $("#uphone").val(),
+				"issuper": 0
+			}
+			// var user = {
+			// 	"sid": "2019112222",
+			// 	"password": "aaa",
+			// 	"nickname": "bbb",
+			// 	"phone": "ccc",
+			// 	"issuper": 0
+			// }
+			$.ajax({
+				type: "POST",
+				url: "/users",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(user),
+				success:function (data) {
+					alert("注册成功,请登录");
+					window.location.href = "login.html";
+				}
+			})
+		})
+	});
+</script>
+<!--//our dynamic-->
 </head>
 <body>
 <script src="../js/jquery.vide.min.js"></script>
 <!-- main -->
-<div data-vide-bg="../images/bg3.png">
+<div data-vide-bg="../images/signupbk.png">
 <div class="center-container">
 <div class="w3ls-header">
 	<div class="header-main">
 		<h1>注 册</h1>
 			<div class="header-left-bottom agileinfo">
-				<form action="#" method="post">
+				<form action="#">
 					<div class="icon1">
 						<i class="fa fa-user" aria-hidden="true"></i>
-						<input  type="text" placeholder="姓名" required=""/>
+						<input id="unick" type="text" placeholder="昵称" required=""/>
 					</div>
 					<div class="icon1">
 						<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-						<input type="stunum" placeholder="学号" required=""/>
+						<input id="uid" type="stunum" placeholder="学号" required=""/>
 					</div>
 					<div class="icon1">
 						<i class="fa fa-phone" aria-hidden="true"></i>	
-						<input type="tel" placeholder="手机号" required=""/>
+						<input id="uphone" type="tel" placeholder="手机号" required=""/>
 					</div>
 					<div class="icon1">
 						<i class="fa fa-lock" aria-hidden="true"></i>
-						<input type="password" placeholder="密码" required=""/>
+						<input id="upwd" type="password" placeholder="密码" required=""/>
 					</div>
 					<div class="icon1">
 						<i class="fa fa-lock" aria-hidden="true"></i>
 						<input type="password" placeholder="确认密码" required=""/>
 					</div>
 					<div class="bottom">
-						<input type="submit" value="注册" />
+						<button id="submit" type="submit">注册</button>
 					</div>
 					<div class="bottom">
 						<a href="login.html">返回登录界面 ||</a>
