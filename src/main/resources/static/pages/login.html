@@ -23,28 +23,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- css files -->
 <link rel="stylesheet" href="../css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
 
+<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <!-- Online-fonts -->
 <!--<link href="//fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew,latin-ext,vietnamese" rel="stylesheet">-->
 <!-- //Online-fonts -->
 
 <script>
 	$(document).ready(function (){
-		$("button").click(function () {
+		$("#submit").click(function () {
 			var user = {
-				//"sid": $("#uid").val(),
 				"password": $("#upwd").val(),
-				//"nickname": $("#unick").val(),
-				"phone": $("#uphone").val(),
-				//"password": $("#upwd").val(),
-				//"issuper": 0
+				"phone": $("#uphone").val()
 			}
-			// var user = {
-			// 	"sid": "2019112222",
-			// 	"password": "aaa",
-			// 	"nickname": "bbb",
-			// 	"phone": "ccc",
-			// 	"issuper": 0
-			// }
 			$.ajax({
 				type: "POST",
 				url: "/users/login",
@@ -83,7 +73,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				<h2><span>登录</span></h2>
 					<div>
 						<!--<input placeholder="SmartPhone" name="SmartPhone" type="tel" required="">-->
-						<input d="uphone" placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
+						<input id="uphone" placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
 						<!--<input placeholder="Full Name" name="Name" type="email" required="">-->
 						<!--<input placeholder="Password" name="Password" type="password" required="">-->
 						<input id="upwd" placeholder="Password" name="Password" type="password" required="">
