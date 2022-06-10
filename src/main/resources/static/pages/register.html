@@ -24,7 +24,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--our dynamic	-->
 <script>
 	$(document).ready(function (){
-		$("button").click(function () {
+		$("#submit").click(function () {
 
 			var user = {
 				"sid": $("#uid").val(),
@@ -65,7 +65,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="header-main">
 		<h1>注 册</h1>
 			<div class="header-left-bottom agileinfo">
-				<form action="#">
+				<div>
 					<div class="icon1">
 						<i class="fa fa-user" aria-hidden="true"></i>
 						<input id="unick" type="text" placeholder="昵称" required=""/>
@@ -96,7 +96,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="bottom">
 						
 					</div>
-				</form>	
+				</div>
 			</div>
 	</div>
 </div>
