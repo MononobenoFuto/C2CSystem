@@ -41,21 +41,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			// }
 			//var pass1 = document.getElementById("pwd");
 			var pass2 = $("#repwd").val();
-			/*
-			if(!StuID.test(testNum.value)) {
+			var ret = /^\d{5,20}$/;
+			if(!ret.test(user.sid)) {
 				alert("学号请输入数字！")
 				window.location.href = "register.html";
-				//return
+				return
 			}
-			else if(!PNo.test(testNum.value)){
+			else if(!ret.test(user.phone)){
 				alert("手机号输入错误！")
 				window.location.href = "register.html";
-				//return
+				return
 			}
-			else
-				*/
-
-			if(pass2 != user.password){
+			else if(pass2 != user.password){
 				alert("密码不一样")
 				window.location.href = "register.html";
 				return
