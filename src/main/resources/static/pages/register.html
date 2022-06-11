@@ -39,7 +39,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			// 	"phone": "ccc",
 			// 	"issuper": 0
 			// }
-			//var pass1 = document.getElementById("pwd");
 			var pass2 = $("#repwd").val();
 			var ret = /^\d{5,20}$/;
 			if(!ret.test(user.sid)) {
@@ -59,7 +58,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			}
 			else {
 				//flas2 = true;
-
 			$.ajax({
 				type: "POST",
 				url: "/users",
