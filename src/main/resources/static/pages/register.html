@@ -41,17 +41,37 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			// 	"phone": "ccc",
 			// 	"issuper": 0
 			// }
-			$.ajax({
-				type: "POST",
-				url: "/users",
-				contentType: "application/json", //必须这样写
-				dataType: "json",
-				data: JSON.stringify(user),
-				success:function (data) {
-					alert("注册成功,请登录");
-					window.location.href = "login.html";
-				}
-			})
+			var pass2 = $("#repwd").val();
+			var ret = /^\d{5,20}$/;
+			if(!ret.test(user.sid)) {
+				alert("学号请输入数字！")
+				window.location.href = "register.html";
+				return
+			}
+			else if(!ret.test(user.phone)){
+				alert("手机号输入错误！")
+				window.location.href = "register.html";
+				return
+			}
+			else if(pass2 != user.password){
+				alert("密码不一样")
+				window.location.href = "register.html";
+				return
+			}
+			else {
+				//flas2 = true;
+				$.ajax({
+					type: "POST",
+					url: "/users",
+					contentType: "application/json", //必须这样写
+					dataType: "json",
+					data: JSON.stringify(user),
+					success:function (data) {
+						alert("注册成功,请登录");
+						window.location.href = "login.html";
+					}
+				})
+			}//
 		})
 	});
 </script>
