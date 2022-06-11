@@ -23,9 +23,32 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- css files -->
 <link rel="stylesheet" href="../css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
 
+<script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
 <!-- Online-fonts -->
 <!--<link href="//fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew,latin-ext,vietnamese" rel="stylesheet">-->
 <!-- //Online-fonts -->
+
+<script>
+	$(document).ready(function (){
+		$("#submit").click(function () {
+			var user = {
+				"password": $("#upwd").val(),
+				"phone": $("#uphone").val()
+			}
+			$.ajax({
+				type: "POST",
+				url: "/users/login",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(user),
+				success:function (data) {
+					alert("登录成功！欢迎！");
+					window.location.href = "index.html";
+				}
+			})
+		})
+	});
+</script>
 
 </head>
 <body>
@@ -48,12 +71,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--			</div>-->
 			<div class="w3layouts-main">
 				<h2><span>登录</span></h2>
-					<form action="#" method="post">
-						<input placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
+					<div>
+						<!--<input placeholder="SmartPhone" name="SmartPhone" type="tel" required="">-->
+						<input id="uphone" placeholder="SmartPhone" name="SmartPhone" type="tel" required="">
 						<!--<input placeholder="Full Name" name="Name" type="email" required="">-->
-						<input placeholder="Password" name="Password" type="password" required="">
-						<input type="submit" value="Get Started" name="login">
-					</form>
+						<!--<input placeholder="Password" name="Password" type="password" required="">-->
+						<input id="upwd" placeholder="Password" name="Password" type="password" required="">
+						<!--<input type="submit" value="Get Started" name="login">-->
+						<button id="submit" type="submit">Get Started</button>
+					</div>
 					<h6><a href="#">忘记密码?</a></h6>
 					<h6><a href="register.html">没有账号？点此注册</a></h6>
 			</div>
