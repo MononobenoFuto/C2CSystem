@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ICommodityService extends IService<Commodity> {
     IPage<Commodity> getByPage(Integer currentPage, Integer pageSize);
+    IPage<Commodity> getByPageWithType(Integer currentPage, Integer pageSize, String type);
 }

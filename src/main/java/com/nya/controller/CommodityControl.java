@@ -27,4 +27,9 @@ public class CommodityControl {
     public IPage<Commodity> getByPage(@PathVariable Integer currentPage, @PathVariable Integer pageSize) {
         return commodityService.getByPage(currentPage, pageSize);
     }
+
+    @GetMapping("/page/{currentPage}/{pageSize}/{ctype}")
+    public IPage<Commodity> getByPageWithType(@PathVariable Integer currentPage, @PathVariable Integer pageSize, @PathVariable String ctype) {
+        return commodityService.getByPageWithType(currentPage, pageSize, ctype);
+    }
 }
