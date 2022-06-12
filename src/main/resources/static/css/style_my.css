@@ -103,7 +103,7 @@ input[type="submit"],.agileits_copyright p a,a{
 }
 .w3_main_grid_left_grid{
 	padding:2em;
-	background:#e88d6a;
+	background:rgba(57, 255, 0, 0.57);
 }
 .w3ls_main_grid_right_grid,.w3_main_grid_left_grid{
 	min-height: 539px;
@@ -115,7 +115,7 @@ input[type="submit"],.agileits_copyright p a,a{
 }
 .w3_main_grid_left_grid p{
 	font-size:14px;
-	color:#b64a1f;
+	color:#2d671c;
 	line-height:2em;
 	text-align:center;
 }
@@ -144,7 +144,7 @@ input[type="submit"],.agileits_copyright p a,a{
 }
 .wthree_tab_grid_sub_left {
     float: left;
-    width: 20%;
+    width: 24.5%;
     padding: 1em;
     text-align: center;
     border: 1px solid #999;
