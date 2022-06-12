@@ -29,12 +29,38 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //Online-fonts -->
 
 <script>
+	/*
+	if(document.cookie){
+		c_start =document.cookie.indexOf("=");
+		c_end = document.cookie.indexOf("; ");
+		cid = document.cookie.substring(0, c_start);
+		cpwd = document.cookie.substring(c_start+1, c_end);
+		//alert(cpwd);
+		//document.cookie
+		var user = {
+			"password": cid,
+			"phone": cpwd
+		}
+	}
+	*/
 	$(document).ready(function (){
+
 		$("#submit").click(function () {
+
 			var user = {
 				"password": $("#upwd").val(),
 				"phone": $("#uphone").val()
 			}
+
+			document.cookie = user.phone + "=" + user.password;
+			//alert(document.cookie);
+			//var username=document.cookie.split(";")[0].split("=")[1];
+			//var passwd = document.cookie.split(";")[1].split("=")[1];
+			//alert(username);
+			//alert(passwd);
+
+			//alert(user.phone);
+
 			$.ajax({
 				type: "POST",
 				url: "/users/login",
