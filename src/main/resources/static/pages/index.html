@@ -15,6 +15,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript" src="../js/move-top.js"></script>
 <script type="text/javascript" src="../js/easing.js"></script>
 <script type="text/javascript" src="../js/startstop-slider.js"></script>
+<script>
+	$(document).ready(function () {
+		var cookie = document.cookie;
+		if(cookie != "") {
+			$("#_login").css("visibility", "hidden");
+			$("#_register").css("visibility", "hidden");
+			var showCount = "欢迎，账户：" + cookie;
+			$("#_myaccount").text(showCount);
+		} else {
+			$("#_myaccount").hide();
+		}
+	})
+</script>
 </head>
 <body>
   <div class="wrap">
@@ -27,11 +40,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 			<div class="account_desc">
 				<ul>
-					<li><a href="register.html">注册</a></li>
-					<li><a href="login.html">登录</a></li>
+					<li id="_register"><a href="register.html">注册</a></li>
+					<li id="_login"><a href="login.html">登录</a></li>
 					<!--<li><a href="#">Delivery</a></li>-->
 					<!--<li><a href="#">Checkout</a></li>-->
-					<li><a href="my.html">我的账户</a></li>
+					<li><a id="_myaccount" href="my.html">我的账户</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -144,13 +157,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							             <a href="preview.html" class="button">立即购买！</a><!--Shop Now-->
 					                   </div>		
 						             	 <div class="slider-img">
-									     <a href="preview.html"><img src="./images/slide-3-image.jpg" alt="learn more" /></a>
+									     <a href="preview.html"><img src="../images/slide-3-image.jpg" alt="learn more" /></a>
 									  </div>						             					                 
 									  <div class="clear"></div>				
 				                  </div>
 				                  <div class="slide">						             	
 					                  <div class="slider-img">
-									     <a href="preview.html"><img src="./images/slide-2-image.jpg" alt="learn more" /></a>
+									     <a href="preview.html"><img src="../images/slide-2-image.jpg" alt="learn more" /></a>
 									  </div>
 									  <div class="slider-text">
 		                                 <h1>Clearance<br><span>SALE</span></h1>
@@ -183,7 +196,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	</div>
 	      <div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="./images/feature-pic1.jpg" alt="" /></a>
+					 <a href="preview.html"><img src="../images/feature-pic1.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -197,7 +210,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="./images/feature-pic2.jpg" alt="" /></a>
+					<a href="preview.html"><img src="../images/feature-pic2.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -211,7 +224,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="./images/feature-pic3.jpg" alt="" /></a>
+					<a href="preview.html"><img src="../images/feature-pic3.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
@@ -224,7 +237,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="./images/feature-pic4.jpg" alt="" /></a>
+					<a href="preview.html"><img src="../images/feature-pic4.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -248,7 +261,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	</div>
 			<div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="./images/new-pic1.jpg" alt="" /></a>					
+					 <a href="preview.html"><img src="../images/new-pic1.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -261,7 +274,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="./images/new-pic2.jpg" alt="" /></a>
+					<a href="preview.html"><img src="../images/new-pic2.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
@@ -274,7 +287,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="./images/new-pic4.jpg" alt="" /></a>
+					<a href="preview.html"><img src="../images/new-pic4.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -287,7 +300,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-				 <a href="preview.html"><img src="./images/new-pic3.jpg" alt="" /></a>
+				 <a href="preview.html"><img src="../images/new-pic3.jpg" alt="" /></a>
 					 <h2>Lorem Ipsum is simply </h2>					 
 					 <div class="price-details">
 				       <div class="price-number">
