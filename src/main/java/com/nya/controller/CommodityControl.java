@@ -3,10 +3,7 @@ package com.nya.controller;
 import com.nya.domain.Commodity;
 import com.nya.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/commodities")
@@ -17,5 +14,10 @@ public class CommodityControl {
     @PostMapping
     public Boolean save(@RequestBody Commodity commodity) {
         return commodityService.save(commodity);
+    }
+
+    @GetMapping("{id}")
+    public Commodity getByID(@PathVariable Integer id) {
+        return commodityService.getById(id);
     }
 }
