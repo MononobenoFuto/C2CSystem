@@ -1,5 +1,7 @@
 package com.nya.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nya.domain.Commodity;
 import com.nya.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,10 @@ public class CommodityControl {
     @GetMapping("{id}")
     public Commodity getByID(@PathVariable Integer id) {
         return commodityService.getById(id);
+    }
+    
+    @GetMapping("/page/{currentPage}/{pageSize}")
+    public IPage<Commodity> getByPage(@PathVariable Integer currentPage, @PathVariable Integer pageSize) {
+        return commodityService.getByPage(currentPage, pageSize);
     }
 }
