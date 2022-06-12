@@ -11,5 +11,9 @@ public class Commodity {
     private String cname;
     private String cdescription;
     private String ctype;
+    private String csubtype;
+    private Float cprice;
+    private String cpicture;
+    private Integer uid;
 
 }
