@@ -25,10 +25,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#_myaccount").text(showCount);
 		} else {
 			$("#_myaccount").hide();
+			$("#_addgoods").hide();
 		}
 
 
-		$.get("")
+		$.get("/commodities/page/1/4", function (data) {
+			var num1 = data.records[0].cprice;
+			$("#price1").text("￥ " + num1.toFixed(2));
+			$("#name1").text(data.records[0].cname);
+			$("#pic1").attr("src", data.records[0].cpicture);
+			var num2 = data.records[1].cprice;
+			$("#price2").text("￥ " + num2.toFixed(2));
+			$("#name2").text(data.records[1].cname);
+			$("#pic2").attr("src", data.records[1].cpicture);
+			var num3 = data.records[2].cprice;
+			$("#price3").text("￥ " + num3.toFixed(2));
+			$("#name3").text(data.records[2].cname);
+			$("#pic3").attr("src", data.records[2].cpicture);
+			var num4 = data.records[3].cprice;
+			$("#price4").text("￥ " + num4.toFixed(2));
+			$("#name4").text(data.records[3].cname);
+			$("#pic4").attr("src", data.records[3].cpicture);
+		})
 	})
 </script>
 </head>
@@ -45,7 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<ul>
 					<li id="_register"><a href="register.html">注册</a></li>
 					<li id="_login"><a href="login.html">登录</a></li>
-					<li><a href="addgoods.html">发布闲置</a></li>
+					<li><a id="_addgoods" href="addgoods.html">发布闲置</a></li>
 					<!--<li><a href="#">Delivery</a></li>-->
 					<!--<li><a href="#">Checkout</a></li>-->
 					<li><a id="_myaccount" href="my.html">我的账户</a></li>
@@ -200,11 +218,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	</div>
 	      <div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img src="../images/feature-pic1.jpg" alt="" /></a>
-					 <h2>Lorem Ipsum is simply </h2>
+					 <a href="preview.html"><img id="pic1" src="../images/feature-pic1.jpg" alt="" /></a>
+					 <h2 id="name1">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
-							<p><span class="rupees">$620.87</span></p>
+							<p><span id="price1" class="rupees">$620.87</span></p>
 					    </div>
 					       		<div class="add-cart">								
 									<h4><a href="preview.html">加入购物车</a></h4><!--Add to Cart-->
@@ -214,11 +232,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="../images/feature-pic2.jpg" alt="" /></a>
-					 <h2>Lorem Ipsum is simply </h2>
+					<a href="preview.html"><img id="pic2" src="../images/feature-pic2.jpg" alt="" /></a>
+					 <h2 id="name2">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
-							<p><span class="rupees">$899.75</span></p>
+							<p><span id="price2" class="rupees">$899.75</span></p>
 					    </div>
 					       		<div class="add-cart">								
 									<h4><a href="preview.html">加入购物车</a></h4>
@@ -228,11 +246,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="../images/feature-pic3.jpg" alt="" /></a>
-					 <h2>Lorem Ipsum is simply </h2>
+					<a href="preview.html"><img id="pic3" src="../images/feature-pic3.jpg" alt="" /></a>
+					 <h2 id="name3">Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
-							<p><span class="rupees">$599.00</span></p>
+							<p><span id="price3" class="rupees">$599.00</span></p>
 					    </div>
 					       		<div class="add-cart">								
 									<h4><a href="preview.html">加入购物车</a></h4>
@@ -241,11 +259,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img src="../images/feature-pic4.jpg" alt="" /></a>
-					 <h2>Lorem Ipsum is simply </h2>
+					<a href="preview.html"><img id="pic4" src="../images/feature-pic4.jpg" alt="" /></a>
+					 <h2 id="name4">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
-							<p><span class="rupees">$679.87</span></p>
+							<p><span id="price4" class="rupees">$679.87</span></p>
 					    </div>
 					       		<div class="add-cart">								
 									<h4><a href="preview.html">加入购物车</a></h4>
