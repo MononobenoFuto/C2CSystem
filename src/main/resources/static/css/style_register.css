@@ -30,19 +30,19 @@ img{max-width:100%;}
 
 body{
 	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 	padding:0;
-	margin:0;
-	font-family: 'CinzelDecorative-Regular';
+	margin:0; 
+   font-family: 'CinzelDecorative-Regular';
 	font-size: 100%;
-}
-@font-face {
-	font-family: 'CinzelDecorative-Regular';
-	src: url(../fonts/CinzelDecorative-Regular.ttf)format('truetype');
+}  
+ @font-face {
+   font-family: 'CinzelDecorative-Regular';
+   src: url(../fonts/CinzelDecorative-Regular.ttf)format('truetype');
 }
 h1,h2,h3,h4,h5,h6{
 	margin:0;			   
@@ -73,7 +73,7 @@ a:hover{
 /*--main--*/
 /*--header start here--*/
 .w3ls-header {
-    padding: 5em 20em 20em;
+    padding: 2em 12em 12em;
 }
 .icon1 i.fa {
     font-size: 1.5em;
@@ -95,12 +95,12 @@ a {
     background: rgba(0, 0, 0, 0.45);
 }
 .bottom {
-    margin: 5em 0 0;
+    margin: 2em 0 0;
     text-align: center;
 }
 .header-main {
-    padding: 2em 4em;
-    width: 50%;
+    padding: 1.5em 2.8em;
+    width: 20%;
     margin: 0 auto;
     background: rgba(0, 0, 0, 0.5);
 }
