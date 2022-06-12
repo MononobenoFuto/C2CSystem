@@ -25,7 +25,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script>
 	$(document).ready(function (){
 		$("#submit").click(function () {
-
 			var user = {
 				"sid": $("#uid").val(),
 				"password": $("#upwd").val(),
@@ -60,18 +59,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			}
 			else {
 				//flas2 = true;
-				$.ajax({
-					type: "POST",
-					url: "/users",
-					contentType: "application/json", //必须这样写
-					dataType: "json",
-					data: JSON.stringify(user),
-					success:function (data) {
-						alert("注册成功,请登录");
-						window.location.href = "login.html";
-					}
-				})
-			}//
+			$.ajax({
+				type: "POST",
+				url: "/users",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(user),
+				success:function (data) {
+					alert("注册成功,请登录");
+					window.location.href = "login.html";
+				}
+			})
+				}//
 		})
 	});
 </script>
@@ -105,7 +104,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div>
 					<div class="icon1">
 						<i class="fa fa-lock" aria-hidden="true"></i>
-						<input type="password" placeholder="确认密码" required=""/>
+						<!--<input type="password" placeholder="确认密码" required=""/>-->
+						<input id="repwd" type="password" placeholder="确认密码" required=""/>
 					</div>
 					<div class="bottom">
 						<button id="submit" type="submit">注册</button>
