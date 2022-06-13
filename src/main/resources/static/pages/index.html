@@ -28,21 +28,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#_addgoods").hide();
 		}
 
-
+		var GoodsID1;
+		var GoodsID2;
+		var GoodsID3;
+		var GoodsID4;
 		$.get("/commodities/page/1/4", function (data) {
 			var num1 = data.records[0].cprice;
+			GoodsID1 = data.records[0].id;
 			$("#price1").text("￥ " + num1.toFixed(2));
 			$("#name1").text(data.records[0].cname);
 			$("#pic1").attr("src", data.records[0].cpicture);
 			var num2 = data.records[1].cprice;
+			GoodsID2 = data.records[1].id;
 			$("#price2").text("￥ " + num2.toFixed(2));
 			$("#name2").text(data.records[1].cname);
 			$("#pic2").attr("src", data.records[1].cpicture);
 			var num3 = data.records[2].cprice;
+			GoodsID3 = data.records[2].id;
 			$("#price3").text("￥ " + num3.toFixed(2));
 			$("#name3").text(data.records[2].cname);
 			$("#pic3").attr("src", data.records[2].cpicture);
 			var num4 = data.records[3].cprice;
+			GoodsID4 = data.records[3].id;
 			$("#price4").text("￥ " + num4.toFixed(2));
 			$("#name4").text(data.records[3].cname);
 			$("#pic4").attr("src", data.records[3].cpicture);
@@ -61,6 +68,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$("#_addgoods").click(function (){
 			//alert(UserID);
 			window.location.href = "addgoods.html?xm="+UserID;
+		})
+
+		$("#pic1").click(function (){
+			//alert(UserID);
+			window.location.href = "preview.html?xm="+GoodsID1;
+		})
+
+		$("#pic2").click(function (){
+			//alert(UserID);
+			//alert(GoodsID2);
+			window.location.href = "preview.html?xm="+GoodsID2;
+		})
+		$("#pic3").click(function (){
+			//alert(UserID);
+			window.location.href = "preview.html?xm="+GoodsID3;
+		})
+		$("#pic4").click(function (){
+			//alert(UserID);
+			window.location.href = "preview.html?xm="+GoodsID4;
 		})
 	})
 </script>
@@ -233,7 +259,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	</div>
 	      <div class="section group">
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="preview.html"><img id="pic1" src="../images/feature-pic1.jpg" alt="" /></a>
+					 <a ><img id="pic1" src="../images/feature-pic1.jpg" alt="" /></a><!--href="preview.html"-->
 					 <h2 id="name1">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -247,7 +273,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img id="pic2" src="../images/feature-pic2.jpg" alt="" /></a>
+					<a ><img id="pic2" src="../images/feature-pic2.jpg" alt="" /></a>
 					 <h2 id="name2">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">
@@ -261,7 +287,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img id="pic3" src="../images/feature-pic3.jpg" alt="" /></a>
+					<a ><img id="pic3" src="../images/feature-pic3.jpg" alt="" /></a>
 					 <h2 id="name3">Lorem Ipsum is simply </h2>
 					 <div class="price-details">
 				       <div class="price-number">
@@ -274,7 +300,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 				<div class="grid_1_of_4 images_1_of_4">
-					<a href="preview.html"><img id="pic4" src="../images/feature-pic4.jpg" alt="" /></a>
+					<a ><img id="pic4" src="../images/feature-pic4.jpg" alt="" /></a>
 					 <h2 id="name4">Lorem Ipsum is simply </h2>
 					<div class="price-details">
 				       <div class="price-number">

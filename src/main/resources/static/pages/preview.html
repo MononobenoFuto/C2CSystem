@@ -29,7 +29,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				generateNextPrev: true,
 				generatePagination: false
 			});
-		});
+		})
+		var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
+		var GoodsID;
+		if(url.indexOf("?") != -1) {undefined
+			str = url.substr(1);
+			strs = str.split("=");
+			GoodsID = strs[1];
+		}
+		//alert(GoodsID);
+
+		$.get("/commodities/"+GoodsID, function (data){
+			var price = data.cprice;
+			//var GType = data.ctype;
+			$("#GPics").attr("src", data.cpicture);
+			$("#GName").text(data.cname);
+			$("#GDesc").text(data.cdescription);
+			$("#GPrice").text("￥ " + price.toFixed(2));
+			$("#GType").text(data.ctype);
+		})
+		/*
+		var Goodstype1 = document.getElementById("GType").value;
+		alert(Goodstype1);
+		$.get("/page/1/4/"+Goodstype1, function (data) {
+			$("#pic1").attr("src", data.records[0].cpicture);
+			$("#pic2").attr("src", data.records[1].cpicture);
+			$("#pic3").attr("src", data.records[2].cpicture);
+			$("#pic4").attr("src", data.records[3].cpicture);
+		})
+		 */
+
 	</script>
 </head>
 <body>
@@ -127,30 +156,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						   		<div id="products_example">
 							   		<div id="products">
 										<div class="slides_container">
-										<a href="#" target="_blank"><img src="../images/productslide-1.jpg" alt=" " /></a>
+										<a  href="#" target="_blank"><img id="GPics" alt=" " /></a><!--src="../images/productslide-1.jpg"-->
+										<a id="GType"></a><!---->
+										<!--
 										<a href="#" target="_blank"><img src="../images/productslide-2.jpg" alt=" " /></a>
 										<a href="#" target="_blank"><img src="../images/productslide-3.jpg" alt=" " /></a>
 										<a href="#" target="_blank"><img src="../images/productslide-4.jpg" alt=" " /></a>
 										<a href="#" target="_blank"><img src="../images/productslide-5.jpg" alt=" " /></a>
 										<a href="#" target="_blank"><img src="../images/productslide-6.jpg" alt=" " /></a>
+										-->
 										</div>
 										<ul class="pagination">
+										<!--
 										<li><a href="#"><img src="../images/thumbnailslide-1.jpg" alt=" " /></a></li>
 										<li><a href="#"><img src="../images/thumbnailslide-2.jpg" alt=" " /></a></li>
 										<li><a href="#"><img src="../images/thumbnailslide-3.jpg" alt=" " /></a></li>
 										<li><a href="#"><img src="../images/thumbnailslide-4.jpg" alt=" " /></a></li>
 										<li><a href="#"><img src="../images/thumbnailslide-5.jpg" alt=" " /></a></li>
 										<li><a href="#"><img src="../images/thumbnailslide-6.jpg" alt=" " /></a></li>
+										-->
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="desc span_3_of_2">
-							<h2>电动车 </h2>
-							<p>刚换的电池,只充了一次,续航40km</p>
+							<h2 id="GName">电动车 </h2>
+							<p id="GDesc">刚换的电池,只充了一次,续航40km</p>
 							<div class="price">
-								<p>价格: <span>900.00</span></p>
+								<p id="GPrice">价格: <span>900.00</span></p>
 							</div>
 							<div class="available">
 								<p>相关选项 :</p>
@@ -197,7 +231,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                <div class="section group">
                             <div class="grid_1_of_4 images_1_of_4">
-                                 <a href="#"><img src="../images/new-pic1.jpg" alt=""></a>
+                                 <a href="#"><img src="../images/new-pic1.jpg" alt=""></a><!---->
                                 <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
@@ -215,7 +249,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                             <div class="grid_1_of_4 images_1_of_4">
-                                <a href="#"><img src="../images/new-pic4.jpg" alt=""></a>
+                                <a href="#"><img src="../images/new-pic3.jpg" alt=""></a>
                                 <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
@@ -224,7 +258,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                             <div class="grid_1_of_4 images_1_of_4">
-                             <img src="../images/new-pic3.jpg" alt="">
+                             <img src="../images/new-pic4.jpg" alt="">
                                  <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
