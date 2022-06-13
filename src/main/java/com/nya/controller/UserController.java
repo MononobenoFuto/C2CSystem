@@ -1,6 +1,8 @@
 package com.nya.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.nya.domain.Commodity;
 import com.nya.domain.User;
 import com.nya.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,12 @@ public class UserController {
     @DeleteMapping("{id}")
     public Boolean delete(@PathVariable Integer id) {
         return userService.removeById(id);
+    }
+
+    @GetMapping("/p/{phone}")
+    public User getByPhone(@PathVariable String phone) {
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        qw.like("phone", phone);
+        return userService.getOne(qw);
     }
 }
