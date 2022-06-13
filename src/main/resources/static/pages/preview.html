@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="../css/global.css">
 <script src="../js/slides.min.jquery.js"></script>
 <script>
-		$(function(){
+		$(document).ready(function(){
 			$('#products').slides({
 				preload: true,
 				preloadImage: 'img/loading.gif',
@@ -29,25 +29,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				generateNextPrev: true,
 				generatePagination: false
 			});
-		})
-		var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
-		var GoodsID;
-		if(url.indexOf("?") != -1) {undefined
-			str = url.substr(1);
-			strs = str.split("=");
-			GoodsID = strs[1];
-		}
-		//alert(GoodsID);
+		//})
+			var cookie = document.cookie;
+			if(cookie != "") {
+				$("#_login").css("visibility", "hidden");
+				$("#_register").css("visibility", "hidden");
+				var showCount = "欢迎，账户：" + cookie;
+				$("#_myaccount").text(showCount);
+			} else {
+				$("#_myaccount").hide();
+				$("#_addgoods").hide();
+			}
+			var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
+			var GoodsID;
+			if(url.indexOf("?") != -1) {undefined
+				str = url.substr(1);
+				strs = str.split("=");
+				GoodsID = strs[1];
+			}
+			//alert(GoodsID);
 
-		$.get("/commodities/"+GoodsID, function (data){
-			var price = data.cprice;
-			//var GType = data.ctype;
-			$("#GPics").attr("src", data.cpicture);
-			$("#GName").text(data.cname);
-			$("#GDesc").text(data.cdescription);
-			$("#GPrice").text("￥ " + price.toFixed(2));
-			$("#GType").text(data.ctype);
-		})
+			var buyerphone;
+			buyerphone = cookie;
+			var buyerID;
+			$.get("/users/p/"+buyerphone, function (data){
+				buyerID = data.id;
+			})
+			var goodsID;
+			$.get("/commodities/"+GoodsID, function (data){
+				var price = data.cprice;
+				goodsID = data.id;
+				//var GType = data.ctype;
+				$("#GPics").attr("src", data.cpicture);
+				$("#GName").text(data.cname);
+				$("#GDesc").text(data.cdescription);
+				$("#GPrice").text("￥ " + price.toFixed(2));
+				$("#GType").text(data.ctype);
+			})
 		/*
 		var Goodstype1 = document.getElementById("GType").value;
 		alert(Goodstype1);
@@ -58,7 +76,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#pic4").attr("src", data.records[3].cpicture);
 		})
 		 */
-
+			$("#Cart").click(function (){
+				var GStatus = "incart";
+				var ToCart = {
+					"cid": goodsID,
+					"buyerid": buyerID,
+					"status": GStatus
+				}
+				$.ajax({//addGoods
+					type: "POST",
+					url: "/carts",
+					contentType: "application/json", //必须这样写
+					dataType: "json",
+					data: JSON.stringify(ToCart),
+					success:function (data) {
+						alert("加入购物车成功！");
+						//window.location.href = "login.html";
+					}
+				})
+			})
+		})//总function的
 	</script>
 </head>
 <body>
@@ -72,11 +109,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 			<div class="account_desc">
 				<ul>
-					<li><a href="register.html">注册</a></li>
-					<li><a href="login.html">登录</a></li>
-					<li><a href="addgoods.html">发布闲置</a></li>
+					<li id="_register"><a href="register.html">注册</a></li>
+					<li id="_login"><a href="login.html">登录</a></li>
+					<li><a id="_addgoods" >发布闲置</a></li>
+					<!--<li><a href="#">Delivery</a></li>-->
 					<!--<li><a href="#">Checkout</a></li>-->
-					<li><a href="my.html">我的账户</a></li>
+					<li><a id="_myaccount" href="my.html">我的账户</a></li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -214,7 +252,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="share">
 								<div class="button"><span><a href="#">联系卖家</a></span></div>
 							</div>
-							<div class="button"><span><a href="#">加入购物车</a></span></div>
+							<!--<div class="button"><span><a href="#">加入购物车</a></span></div>-->
+							<div class="button"><span><a id="Cart">加入购物车</a></span></div><!-- href="#"-->
 							<div class="clear"></div>
 						</div>
 					</div>
