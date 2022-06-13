@@ -14,6 +14,7 @@ public class Commodity {
     private String csubtype;
     private Float cprice;
     private String cpicture;
+    private Integer cremain;
     private Integer uid;
 
 }
