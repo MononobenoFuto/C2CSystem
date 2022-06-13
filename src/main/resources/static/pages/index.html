@@ -47,6 +47,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#name4").text(data.records[3].cname);
 			$("#pic4").attr("src", data.records[3].cpicture);
 		})
+
+		var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
+		var UserID;
+		if(url.indexOf("?") != -1) {undefined
+			str = url.substr(1);
+			strs = str.split("=");
+			UserID = strs[1];
+		}
+		//$("#hyn").text(UserID);
+		//alert(UserID);
+
+		$("#_addgoods").click(function (){
+			//alert(UserID);
+			window.location.href = "addgoods.html?xm="+UserID;
+		})
 	})
 </script>
 </head>
@@ -63,7 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<ul>
 					<li id="_register"><a href="register.html">注册</a></li>
 					<li id="_login"><a href="login.html">登录</a></li>
-					<li><a id="_addgoods" href="addgoods.html">发布闲置</a></li>
+					<li><a id="_addgoods" >发布闲置</a></li>
 					<!--<li><a href="#">Delivery</a></li>-->
 					<!--<li><a href="#">Checkout</a></li>-->
 					<li><a id="_myaccount" href="my.html">我的账户</a></li>

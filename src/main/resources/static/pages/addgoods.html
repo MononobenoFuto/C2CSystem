@@ -18,6 +18,70 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="../js/easing.js"></script>
     <script type="text/javascript" src="../js/startstop-slider.js"></script>
     <script type="text/javascript" src="../js/filedrag.js"></script>
+
+    <script>
+        $(document).ready(function (){
+            var cookie = document.cookie;
+            if(cookie != "") {
+                $("#_login").css("visibility", "hidden");
+                $("#_register").css("visibility", "hidden");
+                var showCount = "欢迎，账户：" + cookie;
+                $("#_myaccount").text(showCount);
+            } else {
+                $("#_myaccount").hide();
+                $("#_addgoods").hide();
+            }
+            //获得用户ID
+            var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
+            var UserID;
+            if(url.indexOf("?") != -1) {undefined
+                str = url.substr(1);
+                strs = str.split("=");
+                UserID = strs[1];
+            }
+            //alert(UserID);
+
+
+            $("#submitgoods").click(function (){
+                //首先获得下拉框的节点对象；
+                var select = document.getElementById("GoodsType");
+                //如何获得当前选中的值
+                var GType = select.value;//获得成功
+                var GName = document.getElementById("GoodsName").value;
+                var GPrice= document.getElementById("GoodsPrice").value;
+                var GDesc = document.getElementById("GoodsDesc").value;
+                var GPictures = document.getElementById("fileselect").value;
+                var GPNNum = GPictures.lastIndexOf("fakepath");//3;3+9
+                var GPics = "..\\pictures\\"+GPictures.substring(GPNNum+9);
+                //alert(GPics);
+                var goods = {
+                    "cname": GName,
+                    "ctype": GType,
+                    "cprice": GPrice,
+                    "uid": UserID,
+                    "cdescription": GDesc,
+                    "cpicture": GPics
+                }
+                //alert(goods.cprice);
+                //alert(goods.cpicture);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/commodities",
+                    contentType: "application/json", //必须这样写
+                    dataType: "json",
+                    data: JSON.stringify(goods),
+                    success:function (data) {
+                        alert("上传成功！");
+                        window.location.href = "index.html";
+                    }
+                })
+
+            })
+
+        })
+    </script>
+
 </head>
 <body>
 <div class="wrap">
@@ -30,11 +94,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             -->
             <div class="account_desc">
                 <ul>
-                    <li><a href="register.html">注册</a></li>
-                    <li><a href="login.html">登录</a></li>
+                    <li id="_register"><a href="register.html">注册</a></li>
+                    <li id="_login"><a href="login.html">登录</a></li>
                     <!--<li><a href="#">Delivery</a></li>-->
                     <!--<li><a href="#">Checkout</a></li>-->
-                    <li><a href="my.html">我的账户</a></li>
+                    <li><a id="_myaccount" href="my.html">我的账户</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -108,24 +172,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="post-ad-form">
                         <form>
                             <label>选择闲置分类 <span>*</span></label>
-                            <select class="">
-                                <option>选择分类</option>
-                                <option>电子产品</option>
-                                <option>文具</option>
-                                <option>书籍</option>
-                                <option>运动</option>
-                                <option>化妆品</option>
-                                <option>日用品</option>
-                                <option>食品</option>
-                                <option>服饰</option>
-                                <option>虚拟商品</option>
+                            <select id = "GoodsType" ><!--class=""-->
+                                <option value = "选择分类">选择分类</option>
+                                <option value = "电子产品">电子产品</option>
+                                <option value = "文具">文具</option>
+                                <option value = "书籍">书籍</option>
+                                <option value = "运动">运动</option>
+                                <option value = "化妆品">化妆品</option>
+                                <option value = "日用品">日用品</option>
+                                <option value = "食品">食品</option>
+                                <option value = "服饰">服饰</option>
+                                <option value = "虚拟商品">虚拟商品</option>
                             </select>
                             <div class="clearfix"></div>
                             <label>添加标题 <span>*</span></label>
-                            <input type="text" class="phone" placeholder="">
+                            <input id="GoodsName" type="text" class="phone" placeholder=""/>
+                            <label>添加价格 <span>*</span></label>
+                            <input id="GoodsPrice" type="text" class="phone" placeholder=""/>
                             <div class="clearfix"></div>
-                            <label>添加描述 <span>*</span></label>
-                            <textarea class="mess" placeholder="描述您的闲置商品，如：入手渠道、新旧程度"></textarea>
+                            <label >添加描述 <span>*</span></label>
+                            <textarea id="GoodsDesc" class="mess" placeholder="描述您的闲置商品，如：入手渠道、新旧程度"></textarea>
                             <div class="clearfix"></div>
                             <div class="upload-ad-photos">
                                 <label>添加图片 :</label>
@@ -153,10 +219,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <script src="../js/filedrag.js"></script>
                             </div>
                             <div class="personal-details">
-                                <form>
-                                    <input type="submit" value="发布闲置">
+                                <!--<form>-->
+                                    <input id="submitgoods" type="submit" value="发布闲置">
                                     <div class="clearfix"></div>
-                                </form>
+                                <!--</form>-->
                             </div>
                         </form>
                     </div>
