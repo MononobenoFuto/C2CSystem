@@ -6,5 +6,5 @@ import lombok.Data;
 public class Cart {
     private Integer cid;
     private Integer buyerid;
-    private Integer sellerid;
+    private String status;
 }
