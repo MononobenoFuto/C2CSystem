@@ -15,8 +15,61 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript" src="../js/move-top.js"></script>
 <script type="text/javascript" src="../js/easing.js"></script>
 <script type="text/javascript" src="../js/startstop-slider.js"></script>
+<<<<<<< Updated upstream
+=======
+<script>
+	$(document).ready(function () {
+		var cookie = document.cookie;
+		if(cookie != "") {
+			$("#_login").css("visibility", "hidden");
+			$("#_register").css("visibility", "hidden");
+			var showCount = "欢迎，账户：" + cookie;
+			$("#_myaccount").text(showCount);
+		} else {
+			$("#_myaccount").hide();
+			$("#_addgoods").hide();
+		}
+
+
+		$.get("/commodities/page/1/4", function (data) {
+			var num1 = data.records[0].cprice;
+			$("#price1").text("￥ " + num1.toFixed(2));
+			$("#name1").text(data.records[0].cname);
+			$("#pic1").attr("src", data.records[0].cpicture);
+			var num2 = data.records[1].cprice;
+			$("#price2").text("￥ " + num2.toFixed(2));
+			$("#name2").text(data.records[1].cname);
+			$("#pic2").attr("src", data.records[1].cpicture);
+			var num3 = data.records[2].cprice;
+			$("#price3").text("￥ " + num3.toFixed(2));
+			$("#name3").text(data.records[2].cname);
+			$("#pic3").attr("src", data.records[2].cpicture);
+			var num4 = data.records[3].cprice;
+			$("#price4").text("￥ " + num4.toFixed(2));
+			$("#name4").text(data.records[3].cname);
+			$("#pic4").attr("src", data.records[3].cpicture);
+		})
+
+		var url = decodeURI(location.search); //获取url中"?"符后的字串 ?vm_id=2
+		var UserID;
+		if(url.indexOf("?") != -1) {undefined
+			str = url.substr(1);
+			strs = str.split("=");
+			UserID = strs[1];
+		}
+		//$("#hyn").text(UserID);
+		//alert(UserID);
+
+		$("#_addgoods").click(function (){
+			//alert(UserID);
+			window.location.href = "addgoods.html?xm="+UserID;
+		})
+	})
+</script>
+>>>>>>> Stashed changes
 </head>
 <body>
+
   <div class="wrap">
 	<div class="header">
 		<div class="headertop_desc">
@@ -25,10 +78,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></span></p>
 			</div>
 -->
+			<!--<li><h4 id="hyn"></h4></li>-->
 			<div class="account_desc">
 				<ul>
+<<<<<<< Updated upstream
 					<li><a href="register.html">注册</a></li>
 					<li><a href="login.html">登录</a></li>
+=======
+					<li id="_register"><a href="register.html">注册</a></li>
+					<li id="_login"><a href="login.html">登录</a></li>
+					<li><a id="_addgoods" >发布闲置</a></li><!--href="addgoods.html"-->
+>>>>>>> Stashed changes
 					<!--<li><a href="#">Delivery</a></li>-->
 					<!--<li><a href="#">Checkout</a></li>-->
 					<li><a href="my.html">我的账户</a></li>
