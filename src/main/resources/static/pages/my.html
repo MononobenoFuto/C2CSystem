@@ -45,7 +45,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$("#title1").text(goodtitle);
 					$("#pic1").attr("src", goodpic);
 					$.get("/users/" + updaterid, function (data){
-						var updaterphone = data.phone;
+						var updaterphone = "联系方式："+ data.phone;
 						$("#phone1").text(updaterphone);
 					})
 				})
@@ -57,7 +57,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$("#title2").text(goodtitle);
 					$("#pic2").attr("src", goodpic);
 					$.get("/users/" + updaterid, function (data){
-						var updaterphone = data.phone;
+						var updaterphone = "联系方式："+ data.phone;
 						$("#phone2").text(updaterphone);
 					})
 				})
@@ -69,7 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$("#title3").text(goodtitle);
 					$("#pic3").attr("src", goodpic);
 					$.get("/users/" + updaterid, function (data){
-						var updaterphone = data.phone;
+						var updaterphone = "联系方式："+ data.phone;
 						$("#phone3").text(updaterphone);
 					})
 				})
@@ -204,6 +204,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</ul>
 											<div class="order-grid"><p class="state">删除</p></div>
 										</div>
+										<div class="clear"> </div>
 									</div>
 									<div class="order-grids"><!---->
 										<div class="grids-left">
