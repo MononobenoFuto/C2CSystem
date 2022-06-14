@@ -234,6 +234,15 @@ body {
 	width: 20px;
 	height: 25px;
 }
+.search_box form input[type="button"] {
+	border: none;
+	cursor: pointer;
+	background: url(../images/search.png) no-repeat 0px 7px;
+	position: absolute;
+	right: 0;
+	width: 20px;
+	height: 25px;
+}
 .header_slide{
 	margin-top:10px;
 }

@@ -16,6 +16,75 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="text/javascript" src="../js/move-top.js"></script>
     <script type="text/javascript" src="../js/easing.js"></script>
     <script type="text/javascript" src="../js/startstop-slider.js"></script>
+    <script>
+        $(document).ready(function () {
+            var url = decodeURI(location.search);
+            var key, cur;
+            if(url.indexOf("?") != -1) {undefined
+                str = url.substr(1);
+                strs = str.split("&");
+                key = strs[0].split("=")[1];
+                cur = strs[1].split("=")[1];
+            }
+
+            var phone = document.cookie;
+            if(phone != "") {
+                $("#_login").css("visibility", "hidden");
+                $("#_register").css("visibility", "hidden");
+                var showCount = "欢迎，账户：" + phone;
+                $("#_myaccount").text(showCount);
+            } else {
+                $("#_myaccount").hide();
+                $("#_addgoods").hide();
+            }
+
+            $.get("/users/p/"+phone, function (data, status){
+                var buyerID = data.id;
+                $.get(`/commodities/keypage/${cur}/8/${key}`, function (data, status) {
+                    var tot = data.total;
+                    for(var i = 0; i < 8; ++i) {
+                        if(i < tot) {
+                            var element = data.records[i];
+                            $(`#c${i} h2`).text(element.cname);
+                            $(`#c${i}`).find(".rupees").text(element.cprice.toFixed(2));
+                            $(`#c${i}`).find("img").attr("src", element.cpicture);
+                            $(`#c${i}`).find("img").attr("name", element.id);
+
+                            $(`#c${i}`).find("img").click(function () {
+                                window.location.href = "preview.html?xm="+(this).name;
+                            })
+                            $(`#c${i}`).find("h4").click(function () {
+                                var ToCart = {
+                                    "cid": element.id,
+                                    "buyerid": buyerID,
+                                    "status": "incart"
+                                }
+                                $.ajax({//addGoods
+                                    type: "POST",
+                                    url: "/carts",
+                                    contentType: "application/json",
+                                    dataType: "json",
+                                    data: JSON.stringify(ToCart),
+                                    success:function (data) {
+                                        alert("加入购物车成功！");
+                                    }
+                                })
+                            })
+                        } else {
+                            $(`#c${i}`).hide();
+                        }
+                    }
+                });
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#_search").click(function () {
+                window.location.href = `search.html?key=${$("#_searchtext").val()}&cur=1`;
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="wrap">
@@ -28,11 +97,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             -->
             <div class="account_desc">
                 <ul>
-                    <li><a href="register.html">注册</a></li>
-                    <li><a href="login.html">登录</a></li>
+                    <li id="_register"><a href="register.html">注册</a></li>
+                    <li id="_login"><a href="login.html">登录</a></li>
+                    <li><a id="_addgoods" >发布闲置</a></li>
                     <!--<li><a href="#">Delivery</a></li>-->
                     <!--<li><a href="#">Checkout</a></li>-->
-                    <li><a href="my.html">我的账户</a></li>
+                    <li><a id="_myaccount" href="my.html">我的账户</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
@@ -47,34 +117,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li>you have no items in your Shopping cart</li>
                 </ul></div></p>
             </div>
-            <script type="text/javascript">
-                function DropDown(el) {
-                    this.dd = el;
-                    this.initEvents();
-                }
-                DropDown.prototype = {
-                    initEvents : function() {
-                        var obj = this;
-
-                        obj.dd.on('click', function(event){
-                            $(this).toggleClass('active');
-                            event.stopPropagation();
-                        });
-                    }
-                }
-
-                $(function() {
-
-                    var dd = new DropDown( $('#dd') );
-
-                    $(document).click(function() {
-                        // all dropdowns
-                        $('.wrapper-dropdown-2').removeClass('active');
-                    });
-
-                });
-
-            </script>
             <div class="clear"></div>
         </div>
         <div class="header_bottom">
@@ -90,7 +132,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="search_box">
                 <form>
-                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+                    <input id="_searchtext" type="text"><input id="_search" type="button" value="搜索">
                 </form>
             </div>
             <div class="clear"></div>
@@ -104,178 +146,115 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <h1>第一页</h1>
                     <hr/>
                     <div class="section group">
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/feature-pic1.jpg" alt="" /></a>
+                        <div id="c0" class="grid_1_of_4 images_1_of_4">
+                            <a href="#"><img src="../images/feature-pic1.jpg" alt="" /></a>
                             <h2>Lorem Ipsum is simply </h2>
                             <div class="price-details">
                                 <div class="price-number">
                                     <p><span class="rupees">$620.87</span></p>
                                 </div>
                                 <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4><!--Add to Cart-->
+                                    <h4><a href="#">加入购物车</a></h4><!--Add to Cart-->
                                 </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/feature-pic2.jpg" alt="" /></a>
+                        <div id="c1" class="grid_1_of_4 images_1_of_4">
+                            <a href="#"><img src="../images/feature-pic2.jpg" alt="" /></a>
                             <h2>Lorem Ipsum is simply </h2>
                             <div class="price-details">
                                 <div class="price-number">
                                     <p><span class="rupees">$899.75</span></p>
                                 </div>
                                 <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
+                                    <h4><a href="#">加入购物车</a></h4>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/feature-pic3.jpg" alt="" /></a>
+                        <div id="c2" class="grid_1_of_4 images_1_of_4">
+                            <a href="#"><img src="../images/feature-pic3.jpg" alt="" /></a>
                             <h2>Lorem Ipsum is simply </h2>
                             <div class="price-details">
                                 <div class="price-number">
                                     <p><span class="rupees">$599.00</span></p>
                                 </div>
                                 <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
+                                    <h4><a href="#">加入购物车</a></h4>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/feature-pic4.jpg" alt="" /></a>
+                        <div id="c3" class="grid_1_of_4 images_1_of_4">
+                            <a href="#"><img src="../images/feature-pic4.jpg" alt="" /></a>
                             <h2>Lorem Ipsum is simply </h2>
                             <div class="price-details">
                                 <div class="price-number">
                                     <p><span class="rupees">$679.87</span></p>
                                 </div>
                                 <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
+                                    <h4><a href="#">加入购物车</a></h4>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </div>
                     <div class="section group">
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/new-pic1.jpg" alt="" /></a>
+                        <div id="c4" class="grid_1_of_4 images_1_of_4">
+                            <a href="#"><img src="../images/new-pic1.jpg" alt="" /></a>
                             <h2>Lorem Ipsum is simply </h2>
                            <div class="price-details">
                                <div class="price-number">
                                    <p><span class="rupees">$849.99</span></p>
                                </div>
                                <div class="add-cart">
-                                   <h4><a href="preview.html">加入购物车</a></h4>
+                                   <h4><a href="#">加入购物车</a></h4>
                                </div>
                                <div class="clear"></div>
                            </div>
                        </div>
-                       <div class="grid_1_of_4 images_1_of_4">
-                           <a href="preview.html"><img src="../images/new-pic2.jpg" alt="" /></a>
+                       <div id="c5" class="grid_1_of_4 images_1_of_4">
+                           <a href="#"><img src="../images/new-pic2.jpg" alt="" /></a>
                            <h2>Lorem Ipsum is simply </h2>
                            <div class="price-details">
                                <div class="price-number">
                                    <p><span class="rupees">$599.99</span></p>
                                </div>
                                <div class="add-cart">
-                                   <h4><a href="preview.html">加入购物车</a></h4>
+                                   <h4><a href="#">加入购物车</a></h4>
                                </div>
                                <div class="clear"></div>
                            </div>
                        </div>
-                       <div class="grid_1_of_4 images_1_of_4">
-                           <a href="preview.html"><img src="../images/new-pic4.jpg" alt="" /></a>
+                       <div id="c6" class="grid_1_of_4 images_1_of_4">
+                           <a href="#"><img src="../images/new-pic4.jpg" alt="" /></a>
                            <h2>Lorem Ipsum is simply </h2>
                            <div class="price-details">
                                <div class="price-number">
                                    <p><span class="rupees">$799.99</span></p>
                                </div>
                                <div class="add-cart">
-                                   <h4><a href="preview.html">加入购物车</a></h4>
+                                   <h4><a href="#">加入购物车</a></h4>
                                </div>
                                <div class="clear"></div>
                            </div>
                        </div>
-                       <div class="grid_1_of_4 images_1_of_4">
-                           <a href="preview.html"><img src="../images/new-pic3.jpg" alt="" /></a>
+                       <div id="c7" class="grid_1_of_4 images_1_of_4">
+                           <a href="#"><img src="../images/new-pic3.jpg" alt="" /></a>
                            <h2>Lorem Ipsum is simply </h2>
                            <div class="price-details">
                                <div class="price-number">
                                    <p><span class="rupees">$899.99</span></p>
                                </div>
                                <div class="add-cart">
-                                   <h4><a href="preview.html">加入购物车</a></h4>
+                                   <h4><a href="#">加入购物车</a></h4>
                                </div>
                                <div class="clear"></div>
                            </div>
                        </div>
                     </div>
                 </div>
-                <div class="page-2">
-                    <h1>第二页</h1>
-                    <hr/>
-                    <div class="section group">
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/new-pic1.jpg" alt="" /></a>
-                            <h2>Lorem Ipsum is simply </h2>
-                            <div class="price-details">
-                                <div class="price-number">
-                                    <p><span class="rupees">$849.99</span></p>
-                                </div>
-                                <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/new-pic2.jpg" alt="" /></a>
-                            <h2>Lorem Ipsum is simply </h2>
-                            <div class="price-details">
-                                <div class="price-number">
-                                    <p><span class="rupees">$599.99</span></p>
-                                </div>
-                                <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/new-pic4.jpg" alt="" /></a>
-                            <h2>Lorem Ipsum is simply </h2>
-                            <div class="price-details">
-                                <div class="price-number">
-                                    <p><span class="rupees">$799.99</span></p>
-                                </div>
-                                <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                        <div class="grid_1_of_4 images_1_of_4">
-                            <a href="preview.html"><img src="../images/new-pic3.jpg" alt="" /></a>
-                            <h2>Lorem Ipsum is simply </h2>
-                            <div class="price-details">
-                                <div class="price-number">
-                                    <p><span class="rupees">$899.99</span></p>
-                                </div>
-                                <div class="add-cart">
-                                    <h4><a href="preview.html">加入购物车</a></h4>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="page-3">
-                    <h1>第三页</h1>
-                    <hr/>
-
-                </div>
 
             </div>
 

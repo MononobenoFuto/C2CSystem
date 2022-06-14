@@ -33,7 +33,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public IPage<Commodity> getByPageWithKey(Integer currentPage, Integer pageSize, String key) {
         IPage page = new Page<Commodity>(currentPage, pageSize);
         QueryWrapper<Commodity> qw = new QueryWrapper<>();
-        qw.like("cname", key).or().like("cdescription", key);
+        qw.like("cname", key).or().like("ctype", key);
         return commodityMapper.selectPage(page, qw);
     }
 }
