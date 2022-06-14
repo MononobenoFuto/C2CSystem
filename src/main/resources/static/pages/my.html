@@ -29,11 +29,82 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 
 <script>
-	var buyerphone;
-	buyerphone = document.cookie;
-	$.get("/users/p/"+buyerphone, function (data){
-		$("#uname").text(data.nickname);
-		$("#ustuID").text(data.sid);
+	$(document).ready(function () {
+		var buyerphone;
+		buyerphone = document.cookie;
+		$.get("/users/p/" + buyerphone, function (data) {
+			var buyerid = data.id;
+			$("#uname").text(data.nickname);
+			$("#ustuID").text(data.sid);
+			$.get("/carts/" + buyerid, function (data) {
+				var goodsid1 = data[0].cid;
+				$.get("/commodities/" + goodsid1, function (data) {
+					var updaterid = data.uid;
+					var goodtitle = data.cname;
+					var goodpic = data.cpicture;
+					$("#title1").text(goodtitle);
+					$("#pic1").attr("src", goodpic);
+					$.get("/users/" + updaterid, function (data){
+						var updaterphone = data.phone;
+						$("#phone1").text(updaterphone);
+					})
+				})
+				var goodsid2 = data[1].cid;
+				$.get("/commodities/" + goodsid2, function (data) {
+					var updaterid = data.uid;
+					var goodtitle = data.cname;
+					var goodpic = data.cpicture;
+					$("#title2").text(goodtitle);
+					$("#pic2").attr("src", goodpic);
+					$.get("/users/" + updaterid, function (data){
+						var updaterphone = data.phone;
+						$("#phone2").text(updaterphone);
+					})
+				})
+				var goodsid3 = data[2].cid;
+				$.get("/commodities/" + goodsid3, function (data) {
+					var updaterid = data.uid;
+					var goodtitle = data.cname;
+					var goodpic = data.cpicture;
+					$("#title3").text(goodtitle);
+					$("#pic3").attr("src", goodpic);
+					$.get("/users/" + updaterid, function (data){
+						var updaterphone = data.phone;
+						$("#phone3").text(updaterphone);
+					})
+				})
+				/*
+				for (i in data) {
+					var goodsid = data[i].cid;
+					$.get("/commodities/" + goodsid, function (data) {
+						var updaterid = data.uid;
+						var goodtitle = data.cname;
+						var goodpic = data.cpicture;
+						if (i == 0) {
+							$("#title1").text(goodtitle);
+							$("#pic1").attr("src", goodpic);
+						} else if (i == 1) {
+							$("#title2").text(goodtitle);
+							$("#pic2").attr("src", goodpic);
+						} else if (i == 2) {
+							$("#title3").text(goodtitle);
+							$("#pic3").attr("src", goodpic);
+						}
+						$.get("/users/" + updaterid, function (data) {
+							var updaterphone = data.phone;
+							if (i == 0) {
+								$("#phone1").text(updaterphone);
+							} else if (i == 1) {
+								$("#phone2").text(updaterphone);
+							} else if (i == 2) {
+								$("#phone3").text(updaterphone);
+							}
+						})
+					})
+				}
+				*/
+			})
+		})
 	})
 </script>
 
@@ -107,29 +178,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<h3>订单列表</h3>
 							<div class="w3_agileits_main_grid_work_grids">
 								<ul class="dropdown">
-									<div class="order-grids">
+									<div class="order-grids"><!---->
 										<div class="grids-left">
-											<img src="../pictures/QQ图片20220612205921.png" alt="item1">
+											<img id="pic1"  ><!--src="../pictures/QQ图片20220612205921.png" alt="item1"-->
 										</div>
-										<div class="order-grid"><p class="state">已完成</p></div>
+										<div class="order-grid"><p class="state">已完成</p></div><!---->
 										<div class="grids-right">
-											<h2>六级历年真题</h2>
+											<h2 id="title1"></h2><!--六级历年真题-->
 											<ul class="grids-right-info">
-												<li >联系方式：15350101069</li>
+												<li id="phone1"></li><!--联系方式：15350101069-->
 											</ul>
+											<div class="order-grid"><p class="state">删除</p></div>
 										</div>
 										<div class="clear"> </div>
 									</div>
-									<div class="order-grids">
+									<div class="order-grids"><!---->
 										<div class="grids-left">
-											<img src="../pictures/QQ图片20220612205940.png" />
+											<img id="pic2"  /><!--src="../pictures/QQ图片20220612205940.png"-->
 										</div>
 										<div class="order-grid"><p class="state">已完成</p></div>
 										<div class="grids-right">
-											<h2>耳机AIRPODS3</h2>
+											<h2 id="title2"></h2><!--耳机AIRPODS3-->
 											<ul class="grids-right-info">
-												<li >联系方式：18970197906</li>
+												<li id="phone2"></li><!--联系方式：18970197906-->
 											</ul>
+											<div class="order-grid"><p class="state">删除</p></div>
+										</div>
+									</div>
+									<div class="order-grids"><!---->
+										<div class="grids-left">
+											<img id="pic3"  /><!--src="../pictures/QQ图片20220612205940.png"-->
+										</div>
+										<div class="order-grid"><p class="state">已完成</p></div>
+										<div class="grids-right">
+											<h2 id="title3"></h2><!--耳机AIRPODS3-->
+											<ul class="grids-right-info">
+												<li id="phone3"></li><!--联系方式：18970197906-->
+											</ul>
+											<div class="order-grid"><p class="state">删除</p></div>
 										</div>
 									</div>
 								</ul>
