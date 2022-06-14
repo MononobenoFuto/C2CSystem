@@ -1144,7 +1144,7 @@ body {
 	width: 68.1%;
 }
 .images_3_of_1  img {
-	max-width:100%;
+	max-width:50%;
 	display:block;
 	border:1px solid #E0E0E0;
 }
