@@ -88,6 +88,89 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			//alert(UserID);
 			window.location.href = "preview.html?xm="+GoodsID4;
 		})
+		var buyerphone;
+		buyerphone = cookie;
+		var buyerID;
+		$.get("/users/p/"+buyerphone, function (data){
+			buyerID = data.id;
+		})
+		$("#cart1").click(function (){
+			var GStatus = "incart";
+			var ToCart = {
+				"cid": GoodsID1,
+				"buyerid": buyerID,
+				"status": GStatus
+			}
+			$.ajax({//addGoods
+				type: "POST",
+				url: "/carts",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(ToCart),
+				success:function (data) {
+					alert("加入购物车成功！");
+					//window.location.href = "login.html";
+				}
+			})
+		})
+		$("#cart2").click(function (){
+			var GStatus = "incart";
+			var ToCart = {
+				"cid": GoodsID2,
+				"buyerid": buyerID,
+				"status": GStatus
+			}
+			$.ajax({//addGoods
+				type: "POST",
+				url: "/carts",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(ToCart),
+				success:function (data) {
+					alert("加入购物车成功！");
+					//window.location.href = "login.html";
+				}
+			})
+		})
+		$("#cart3").click(function (){
+			var GStatus = "incart";
+			var ToCart = {
+				"cid": GoodsID3,
+				"buyerid": buyerID,
+				"status": GStatus
+			}
+			$.ajax({//addGoods
+				type: "POST",
+				url: "/carts",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(ToCart),
+				success:function (data) {
+					alert("加入购物车成功！");
+					//window.location.href = "login.html";
+				}
+			})
+		})
+		$("#cart4").click(function (){
+			var GStatus = "incart";
+			var ToCart = {
+				"cid": GoodsID4,
+				"buyerid": buyerID,
+				"status": GStatus
+			}
+			$.ajax({//addGoods
+				type: "POST",
+				url: "/carts",
+				contentType: "application/json", //必须这样写
+				dataType: "json",
+				data: JSON.stringify(ToCart),
+				success:function (data) {
+					alert("加入购物车成功！");
+					//window.location.href = "login.html";
+				}
+			})
+		})
+
 	})
 </script>
 </head>
@@ -266,7 +349,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<p><span id="price1" class="rupees">$620.87</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">加入购物车</a></h4><!--Add to Cart-->
+									<h4><a id="cart1">加入购物车</a></h4><!--href="preview.html"Add to Cart-->
 							     </div>
 							 <div class="clear"></div>
 					</div>
@@ -280,7 +363,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<p><span id="price2" class="rupees">$899.75</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">加入购物车</a></h4>
+									<h4><a id="cart2">加入购物车</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
@@ -294,7 +377,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<p><span id="price3" class="rupees">$599.00</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">加入购物车</a></h4>
+									<h4><a id="cart3">加入购物车</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>
@@ -307,7 +390,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<p><span id="price4" class="rupees">$679.87</span></p>
 					    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">加入购物车</a></h4>
+									<h4><a id="cart4">加入购物车</a></h4>
 							     </div>
 							 <div class="clear"></div>
 					</div>				     
