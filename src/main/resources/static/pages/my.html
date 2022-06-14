@@ -36,7 +36,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			var buyerid = data.id;
 			$("#uname").text(data.nickname);
 			$("#ustuID").text(data.sid);
-			$.get("/carts/" + buyerid, function (data) {
+			$.get("/carts/finish/" + buyerid, function (data) {
 				var goodsid1 = data[0].cid;
 				$.get("/commodities/" + goodsid1, function (data) {
 					var updaterid = data.uid;
