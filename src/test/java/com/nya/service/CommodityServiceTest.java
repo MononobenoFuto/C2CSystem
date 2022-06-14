@@ -11,6 +11,6 @@ public class CommodityServiceTest {
 
     @Test
     void testGetPage() {
-        System.out.println(commodityService.getByPage(1, 8));
+        System.out.println(commodityService.getByPageWithKey(1, 8, "有"));
     }
 }

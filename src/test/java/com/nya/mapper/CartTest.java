@@ -11,6 +11,5 @@ public class CartTest {
 
     @Test
     void testDelete() {
-        cartMapper.deleteByCidAndBuyerid(1000005, 10003);
     }
 }

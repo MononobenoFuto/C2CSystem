@@ -23,7 +23,7 @@ public class CommodityMapperTest {
     void testGetConditionedPage() {
         IPage page = new Page(1, 8);
         QueryWrapper<Commodity> qw = new QueryWrapper<>();
-        qw.like("id", "1000000");
+        qw.like("id", "1");
         commodityMapper.selectPage(page, qw);
     }
 }
