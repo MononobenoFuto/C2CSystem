@@ -85,6 +85,7 @@ ul.dropdown-1 li img {
     font-size: 1.2em;
     font-weight: 300;
 }
+
 .grids-left img {
     padding-top: 3px;
     width: 100px;
@@ -92,8 +93,8 @@ ul.dropdown-1 li img {
 }
 ul.grids-right-info li {
     display: inline-block;
-    padding: 0px 38px 0 45px;
-    font-size: 24px;
+    padding: 0px 38px 0 60px;
+    font-size: 15px;
     color: #999;
 }
 li.user:hover {
@@ -114,7 +115,7 @@ li.chat:hover {
 }
 
 .order-grid {
-    background: url(../images/finish.png) no-repeat;
+    //background: url(../images/finish.png) no-repeat;
     width: 70px;
     height: 33px;
     float: right;
@@ -373,13 +374,13 @@ p.state {
         padding-top: 6em;
     }
     .order-grid {
-        background: url(../images/heart.png) no-repeat -8px -11px;
+        //background: url(../images/heart.png) no-repeat -8px -11px;
         width: 50px;
         height: 22px;
         background-size: 44px;
     }
     .order-grid:hover {
-        background: url(../images/heart.png) no-repeat -8px -36px;
+        //background: url(../images/heart.png) no-repeat -8px -36px;
         width: 50px;
         height: 22px;
         background-size: 44px;
