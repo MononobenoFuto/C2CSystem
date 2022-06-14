@@ -59,16 +59,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$.get("/commodities/"+GoodsID, function (data){
 				var price = data.cprice;
 				goodsID = data.id;
-				//var GType = data.ctype;
+				var GType = data.ctype;
+				//alert(GType);
 				$("#GPics").attr("src", data.cpicture);
 				$("#GName").text(data.cname);
 				$("#GDesc").text(data.cdescription);
 				$("#GPrice").text("￥ " + price.toFixed(2));
 				$("#GType").text(data.ctype);
+				$.get("/commodities/page/1/4/"+GType, function (data) {
+					$("#pic1").attr("src", data.records[0].cpicture);
+					$("#pic2").attr("src", data.records[1].cpicture);
+					$("#pic3").attr("src", data.records[2].cpicture);
+					$("#pic4").attr("src", data.records[3].cpicture);
+				})
 			})
 		/*
-		var Goodstype1 = document.getElementById("GType").value;
-		alert(Goodstype1);
+
 		$.get("/page/1/4/"+Goodstype1, function (data) {
 			$("#pic1").attr("src", data.records[0].cpicture);
 			$("#pic2").attr("src", data.records[1].cpicture);
@@ -270,7 +276,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                <div class="section group">
                             <div class="grid_1_of_4 images_1_of_4">
-                                 <a href="#"><img src="../images/new-pic1.jpg" alt=""></a><!---->
+                                 <a ><img id="pic1" alt=""/></a><!--href="#"src="../images/new-pic1.jpg"-->
                                 <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
@@ -279,7 +285,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                             <div class="grid_1_of_4 images_1_of_4">
-                                <a href="#"><img src="../images/new-pic2.jpg" alt=""></a>
+                                <!--<a href="#"><img src="../images/new-pic2.jpg" alt=""></a>-->
+								 <a ><img id="pic2" alt=""/></a>
                                  <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
@@ -288,7 +295,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                             <div class="grid_1_of_4 images_1_of_4">
-                                <a href="#"><img src="../images/new-pic3.jpg" alt=""></a>
+                                <!--<a href="#"><img src="../images/new-pic3.jpg" alt=""></a>-->
+								<a ><img id="pic3" alt=""/></a>
                                 <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
@@ -297,7 +305,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                             </div>
                             <div class="grid_1_of_4 images_1_of_4">
-                             <img src="../images/new-pic4.jpg" alt="">
+                             <!--<img src="../images/new-pic4.jpg" alt="">-->
+								 <a ><img id="pic4" alt=""/></a>
                                  <div class="price" style="border:none">
                                                <div class="add-cart" style="float:none">
                                                 <h4><a href="#">加入购物车</a></h4>
