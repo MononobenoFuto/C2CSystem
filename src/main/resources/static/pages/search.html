@@ -40,7 +40,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             $.get("/users/p/"+phone, function (data, status){
                 var buyerID = data.id;
-                $.get(`/commodities/keypage/${cur}/8/${key}`, function (data, status) {
+                var searchUrl;
+                if(key == "") {
+                    searchUrl = `/commodities/page/${cur}/8`;
+                } else {
+                    searchUrl = `/commodities/keypage/${cur}/8/${key}`;
+                }
+                $.get(searchUrl, function (data, status) {
                     var tot = data.total;
                     for(var i = 0; i < 8; ++i) {
                         if(i < tot) {
