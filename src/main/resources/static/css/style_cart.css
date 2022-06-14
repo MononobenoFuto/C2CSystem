@@ -135,6 +135,11 @@ h1 {
     width: 20%;
     float: left;
 }
+
+.image1 image {
+    width: 200px;
+    height: 200px;
+}
 img {
     padding-left: 20px;
 }
