@@ -21,12 +21,28 @@ public class CartController {
     }
 
     @DeleteMapping("/{cid}/{buyerid}")
-    public Boolean deleteGoodes(@PathVariable Integer cid, @PathVariable Integer buyerid) {
+    public Boolean deleteGoods(@PathVariable Integer cid, @PathVariable Integer buyerid) {
         return cartService.removeGoods(cid, buyerid);
     }
 
     @GetMapping("/{id}")
     public List<Cart> getByUser(@PathVariable Integer id) {
         return cartService.getByBuyerid(id);
+    }
+
+    @GetMapping("/incart/{id}")
+    public List<Cart> getByUserIncart(@PathVariable Integer id) {
+        return cartService.getByBuyeridIncart(id);
+    }
+
+    @GetMapping("/finish/{id}")
+    public List<Cart> getByUserFinish(@PathVariable Integer id) {
+        return cartService.getByBuyeridFinish(id);
+    }
+
+    @PutMapping("/{cid}/{buyerid}")
+    public Boolean finishTrade(@PathVariable Integer cid, @PathVariable Integer buyerid) {
+        System.out.println(buyerid);
+        return  cartService.finishTrade(cid, buyerid);
     }
 }
