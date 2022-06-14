@@ -32,4 +32,9 @@ public class CommodityControl {
     public IPage<Commodity> getByPageWithType(@PathVariable Integer currentPage, @PathVariable Integer pageSize, @PathVariable String ctype) {
         return commodityService.getByPageWithType(currentPage, pageSize, ctype);
     }
+
+    @GetMapping("/keypage/{currentPage}/{pageSize}/{key}")
+    public IPage<Commodity> getByPageWithKey(@PathVariable Integer currentPage, @PathVariable Integer pageSize, @PathVariable String key) {
+        return commodityService.getByPageWithKey(currentPage, pageSize, key);
+    }
 }
