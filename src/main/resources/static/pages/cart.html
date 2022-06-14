@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 															$(`<input type="number" name="quantity" min="1" max="10" value="1">`)
 													),
 													$(`<div class="price1"></div>`).append(
-															$(`<p></p>`).text(data.cprice.toFixed(2))
+															$(`<p class="_price"></p>`).text(data.cprice.toFixed(2))
 															//$(`<p></p>`).text(phones)
 													),
 													$(`<div class="clear"></div>`)
@@ -81,6 +81,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script>
 		$(document).ready(function () {
 			$(".items").on("click", "div div .alert-close2",function () {
+				var p = Number($(".total2").text()) - Number($(this).parent().find("._price").text());
+				$(".total2").text(p.toFixed(2));
 				$(this).parent().parent().remove();
 				var str = $(this).attr("name");
 				$.ajax({
