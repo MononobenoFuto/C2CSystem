@@ -173,6 +173,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	})
 </script>
+	<script>
+		$(document).ready(function () {
+			$("#_search").click(function () {
+				window.location.href = `search.html?key=${$("#_searchtext").val()}&cur=1`;
+			});
+		})
+	</script>
 </head>
 <body>
   <div class="wrap">
@@ -246,11 +253,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    	<div class="clear"></div>
      			</ul>
 	     	</div>
-	     	<div class="search_box">
-	     		<form>
-	     			<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
-	     		</form>
-	     	</div>
+			<div class="search_box">
+				<form>
+					<input id="_searchtext" type="text"><input id="_search" type="button" value="搜索">
+				</form>
+			</div>
 	     	<div class="clear"></div>
 	     </div>	     
 	<div class="header_slide">
