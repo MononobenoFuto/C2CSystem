@@ -25,6 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
 	<script>
+		//var phones;
 		var uphone = document.cookie;
 		var getUserUrl = "/users/p/" + uphone;
 		$.get(getUserUrl, function (data, status) {
@@ -36,29 +37,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					var commodityUrl = "/commodities/" + data[i].cid;
 					$.get(commodityUrl, function (data, status) {
 						totalPrice += data.cprice;
-						$(".items").append(
-								$(`<div class='item1'></div>`).append(
-										$(`<div class='close1' </div>`).append(
-												$(`<div class='alert-close2' name="/carts/${data.id}/${uid}"></div>`),
-												$(`<div class="image1"></div>`).append(
-														$(`<img src=${data.cpicture} alt="item1">`)
-												),
-												$(`<div class="title1"></div>`).append(
-														$(`<p></p>`).text(data.cname)
-												),
-												$(`<div class="quantity1"></div>`).append(
-														$(`<input type="number" name="quantity" min="1" max="10" value="1">`)
-												),
-												$(`<div class="price1"></div>`).append(
-														$(`<p></p>`).text(data.cprice.toFixed(2))
-												),
-												$(`<div class="clear"></div>`)
-										)
-								)
-						);
-					}).done(function () {
-						$(".total2").text(totalPrice.toFixed(2));
-					})
+						/*
+						var updaterid = data.uid;
+						var Gtitle = data.cname;
+						$.get("/users/" + updaterid, function (data) {
+							phones = data.phone;
+							alert(Gtitle+phones);
+							})
+						*/
+							$(".items").append(
+									$(`<div class='item1'></div>`).append(
+											$(`<div class='close1' </div>`).append(
+													$(`<div class='alert-close2' name="/carts/${data.id}/${uid}"></div>`),
+													$(`<div class="image1"></div>`).append(
+															$(`<img src=${data.cpicture} alt="item1">`)
+													),
+													$(`<div class="title1"></div>`).append(
+															$(`<p></p>`).text(data.cname)//,
+															//$(`<p></p>`).text(phones)
+													),
+													$(`<div class="quantity1"></div>`).append(
+															$(`<input type="number" name="quantity" min="1" max="10" value="1">`)
+													),
+													$(`<div class="price1"></div>`).append(
+															$(`<p></p>`).text(data.cprice.toFixed(2))
+															//$(`<p></p>`).text(phones)
+													),
+													$(`<div class="clear"></div>`)
+											)
+									)
+							);
+							//})//
+							}).done(function () {
+							$(".total2").text(totalPrice.toFixed(2));
+							})
+					//})
 				}
 			}
 			)
@@ -76,6 +89,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					success: function () {
 					}
 				})
+			})
+			$("#GBought").click(function (){
+				$("#GBought").css("visibility", "hidden");
+				confirm("请您尽快与所下单商品的卖家联系！");
+				window.location.href = "my.html#parentHorizontalTab2";
+				/*
+				var uphone = document.cookie;
+				var getUserUrl = "/users/p/" + uphone;
+				$.get(getUserUrl, function (data, status){
+					var uid = data.id;
+					var getCartUrl = "/carts/" + uid;
+					$.get(getCartUrl, function (data, status){})
+				})
+				*/
 			})
 		})
 	</script>
@@ -147,7 +174,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- Checkout-Starts-Here -->
 		<div class="checkout">
 			<div class="checkout-btn">
-				<a href="#">结算</a>
+				<a id="GBought" >下单</a><!--href="#"-->
 			</div>
 			<div class="return">
 				<a href="index.html">返回商城</a>
