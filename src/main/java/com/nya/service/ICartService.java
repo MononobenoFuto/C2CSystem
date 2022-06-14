@@ -12,4 +12,5 @@ public interface ICartService extends IService<Cart> {
     List<Cart> getByBuyeridFinish(Integer buyerid);
 
     Boolean finishTrade(Integer cid, Integer buyerid);
+    Boolean finishAllTrade(Integer buyerid);
 }

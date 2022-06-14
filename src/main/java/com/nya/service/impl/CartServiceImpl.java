@@ -1,5 +1,6 @@
 package com.nya.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -57,7 +58,17 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         cart.setCid(cid);
         cart.setStatus("finish");
         UpdateWrapper<Cart> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("cid", cid).or().eq("buyerid", buyerid);
+        updateWrapper.eq("cid", cid);
+        updateWrapper.and(wrapper ->wrapper.eq("buyerid", buyerid));
         return cartMapper.update(cart, updateWrapper) > 0;
+    }
+
+    @Override
+    public Boolean finishAllTrade(Integer buyerid) {
+
+        UpdateWrapper<Cart> cartUpdateWrapper = new UpdateWrapper<>();
+        cartUpdateWrapper.set("status", "finish");
+        cartUpdateWrapper.eq("buyerid", buyerid);
+        return cartMapper.update(null, cartUpdateWrapper) > 0;
     }
 }

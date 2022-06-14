@@ -30,7 +30,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		var getUserUrl = "/users/p/" + uphone;
 		$.get(getUserUrl, function (data, status) {
 			var uid = data.id;
-			var getCartUrl = "/carts/" + uid;
+			var getCartUrl = "/carts/incart/" + uid;
 			var totalPrice = 0;
 			$.get(getCartUrl, function (data, status) {
 				for(var i in data) {
@@ -73,8 +73,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							})
 					//})
 				}
-			}
-			)
+			})
+			$("#GBought").click(function (){
+				var buyUrl = "/carts/" + uid;
+				$.ajax({
+					type: "PUT",
+					url: buyUrl,
+					success: function (data) {
+						confirm("请您尽快与所下单商品的卖家联系！");
+						window.location.href = "my.html#parentHorizontalTab2";
+					}
+				})
+
+			})
 		})
 		
 	</script>
@@ -91,20 +102,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					success: function () {
 					}
 				})
-			})
-			$("#GBought").click(function (){
-				$("#GBought").css("visibility", "hidden");
-				confirm("请您尽快与所下单商品的卖家联系！");
-				window.location.href = "my.html#parentHorizontalTab2";
-				/*
-				var uphone = document.cookie;
-				var getUserUrl = "/users/p/" + uphone;
-				$.get(getUserUrl, function (data, status){
-					var uid = data.id;
-					var getCartUrl = "/carts/" + uid;
-					$.get(getCartUrl, function (data, status){})
-				})
-				*/
 			})
 		})
 	</script>

@@ -16,7 +16,7 @@ public class CartController {
     private ICartService cartService;
 
     @PostMapping
-    public Boolean addGoods(@RequestBody Cart cart) {
+    public Boolean  addGoods(@RequestBody Cart cart) {
         return  cartService.save(cart);
     }
 
@@ -42,7 +42,12 @@ public class CartController {
 
     @PutMapping("/{cid}/{buyerid}")
     public Boolean finishTrade(@PathVariable Integer cid, @PathVariable Integer buyerid) {
-        System.out.println(buyerid);
         return  cartService.finishTrade(cid, buyerid);
+    }
+
+    @PutMapping("/{buyerid}")
+    public Boolean finishAllTrade(@PathVariable Integer buyerid) {
+        System.out.println(buyerid);
+        return  cartService.finishAllTrade(buyerid);
     }
 }
